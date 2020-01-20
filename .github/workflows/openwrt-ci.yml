@@ -53,8 +53,10 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
-      - name: Generate configuration file
-        run: make defconfig
+      - name: Get config file for xiaomi-mini router
+        run: rm -f ./.config*
+              wget https://raw.githubusercontent.com/yujianxuechuan/lean_openwrt_configs/master/config-xiaomi-mini
+              cp config-xiaomi-mini .config
 
       - name: Make download
         run: |
