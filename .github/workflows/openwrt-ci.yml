@@ -10,8 +10,11 @@
 name: OpenWrt-CI
 
 on:
-    schedule:
-      - cron: 49 08 * * *
+   push:
+    branches: 
+      - master
+   #schedule:
+    #  - cron: 49 08 * * *
 
 jobs:
 
