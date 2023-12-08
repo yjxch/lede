@@ -506,7 +506,15 @@ static int b53_configure_ports_of(struct b53_device *dev)
 		if (fixed_link) {
 			u32 spd;
 			u8 po = GMII_PO_LINK;
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 5, 0)
+			phy_interface_t mode;
+#else
 			int mode = of_get_phy_mode(pn);
+#endif
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 5, 0)
+			of_get_phy_mode(pn, &mode);
+#endif
 
 			if (!of_property_read_u32(fixed_link, "speed", &spd)) {
 				switch (spd) {
@@ -521,7 +529,7 @@ static int b53_configure_ports_of(struct b53_device *dev)
 						po |= PORT_OVERRIDE_SPEED_2000M;
 					else
 						po |= GMII_PO_SPEED_2000M;
-					/* fall through */
+					__attribute__((__fallthrough__));
 				case 1000:
 					po |= GMII_PO_SPEED_1000M;
 					break;

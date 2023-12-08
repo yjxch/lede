@@ -7,11 +7,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mtd-utils
-PKG_VERSION:=2.0.2
+PKG_VERSION:=2.1.5
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=ftp://ftp.infradead.org/pub/mtd-utils/
-PKG_HASH:=fb3de61be8e932abb424e8ea3c30298f553d5f970ad158a737bb303bbf9660b8
+PKG_SOURCE_URL:=https://infraroot.at/pub/mtd/
+PKG_HASH:=386e27fd121699b6b729bc2e8e04dda987b31cca6b16e12fb6cc6dcf26449f46
 
 PKG_FIXUP:=autoreconf
 
@@ -32,7 +33,9 @@ HOST_CONFIGURE_VARS+= \
 
 HOST_CONFIGURE_ARGS+= \
 	--disable-tests \
+	--without-crypto \
 	--without-xattr \
+	--without-zstd \
 	--without-lzo
 
 HOST_MAKE_FLAGS += \

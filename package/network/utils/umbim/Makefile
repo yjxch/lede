@@ -1,19 +1,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=umbim
-PKG_RELEASE:=1
+PKG_RELEASE:=3
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL=$(PROJECT_GIT)/project/umbim.git
-PKG_SOURCE_DATE:=2015-07-04
-PKG_SOURCE_VERSION:=29aaf43b097ee57f7aa1bb24341db6cc4148cbf3
-PKG_MIRROR_HASH:=56e612d9da1ac26de96c4929fbabd047862d725a13ceb904807a9d3d7db43a30
+PKG_SOURCE_DATE:=2019-09-11
+PKG_SOURCE_VERSION:=184b707ddaa0acee84d02e0ffe599cb8b67782bd
+PKG_MIRROR_HASH:=482ff69144f81fafed99035840f5a24e772472f2df2f3ac0219d6de791ac5835
 PKG_MAINTAINER:=John Crispin <john@phrozen.org>
 
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=
-
-PKG_BUILD_PARALLEL:=1
 
 PKG_FLAGS:=nonshared
 
@@ -23,6 +21,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/umbim
   SECTION:=net
   CATEGORY:=Network
+  SUBMENU:=WWAN
   DEPENDS:=+libubox +kmod-usb-net +kmod-usb-net-cdc-mbim +wwan
   TITLE:=Control utility for mobile broadband modems
 endef
@@ -33,7 +32,7 @@ define Package/umbim/description
 endef
 
 TARGET_CFLAGS += \
-	-I$(STAGING_DIR)/usr/include -ffunction-sections -fdata-sections
+	-I$(STAGING_DIR)/usr/include -ffunction-sections -fdata-sections -Wno-address-of-packed-member
 
 TARGET_LDFLAGS += -Wl,--gc-sections
 

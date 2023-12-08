@@ -9,12 +9,12 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=ipset
-PKG_VERSION:=7.1
-PKG_RELEASE:=3
+PKG_VERSION:=7.17
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://ipset.netfilter.org
-PKG_HASH:=7b5eb3b93205c20cdc39e3fc8b6e5f7bb214bf79a7c0c00729dd4a31ce16adc4
+PKG_SOURCE_URL:=https://ipset.netfilter.org
+PKG_HASH:=be49c9ff489dd6610cad6541e743c3384eac96e9f24707da7b3929d8f2ac64d8
 
 PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 PKG_LICENSE:=GPL-2.0
@@ -62,6 +62,7 @@ endef
 define Package/ipset/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/ipset $(1)/usr/sbin/
+	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/ipset-translate $(1)/usr/sbin/
 endef
 
 define Package/libipset/install
@@ -69,5 +70,5 @@ define Package/libipset/install
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libipset*.so.* $(1)/usr/lib/
 endef
 
-$(eval $(call BuildPackage,ipset))
 $(eval $(call BuildPackage,libipset))
+$(eval $(call BuildPackage,ipset))

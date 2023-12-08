@@ -10,12 +10,12 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=cryptodev-linux
-PKG_VERSION:=1.10
+PKG_VERSION:=1.12
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://codeload.github.com/$(PKG_NAME)/$(PKG_NAME)/tar.gz/$(PKG_NAME)-$(PKG_VERSION)?
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_HASH:=833ab7c5c88d2b700a7c702a151254c089a3058886a63cc7d12630e364b8ea83
+PKG_HASH:=f51c2254749233b1b1d7ec9445158bd709f124f88e1c650fe2faac83c3a81938
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYING
 
@@ -27,7 +27,6 @@ include $(INCLUDE_DIR)/package.mk
 
 define KernelPackage/cryptodev
   SUBMENU:=Cryptographic API modules
-  DEFAULT:=m if ALL
   TITLE:=Driver for cryptographic acceleration
   URL:=http://cryptodev-linux.org/
   VERSION:=$(LINUX_VERSION)+$(PKG_VERSION)-$(BOARD)-$(PKG_RELEASE)
